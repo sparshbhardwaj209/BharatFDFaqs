@@ -1,15 +1,8 @@
-// app.js
-const mongoose = require('mongoose');
+const connectDB = require('./db');
 const express = require('express');
 const cors = require('cors');
 const faqRoutes = require('./routes/faqRoutes');
-
-// Connecting to MongoDB
-mongoose.connect('mongodb://localhost:27017/faqdb', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+connectDB();
 
 const app = express();
 app.use(cors());

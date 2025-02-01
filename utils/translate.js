@@ -1,29 +1,27 @@
-const { default: translate } = require('google-translate-open-api');
-const redisClient = require('./redisClient');
-const util = require('util');
+const translate = require("google-translate-api-x");
+const redisClient = require("../redisClient");
 
-const CACHE_EXPIRATION = 3600; 
+const CACHE_EXPIRATION = 3600;
 
 async function translateText(text, targetLang, faqId) {
   const cacheKey = `faq:${faqId}:lang:${targetLang}`;
-  
+
   // Try to get from Redis
   let cached = await redisClient.get(cacheKey);
   if (cached) {
+    console.log("Sending from the cache", cached);
     return cached;
   }
   try {
     // Calling Google Translate API
     const result = await translate(text, {
-      tld: "com",
       to: targetLang,
     });
 
-    const translatedText = result.data[0];
+    if (!result.text) throw new Error("Translation result is empty");
 
-    // Caching the translation
-    await redisClient.setEx(cacheKey, CACHE_EXPIRATION, translatedText);
-    return translatedText;
+    await redisClient.setEx(cacheKey, CACHE_EXPIRATION, result.text);
+    return result.text;
   } catch (error) {
     console.error("Translation error:", error);
     // Fallback: returning original text

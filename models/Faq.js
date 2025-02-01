@@ -6,6 +6,10 @@ const FAQSchema = new mongoose.Schema({
   answer: { type: String, required: true },
   question_hi: { type: String, default: "" },
   question_bn: { type: String, default: "" },
+  answer_hi: { type: String, default: "" },
+  answer_bn: { type: String, default: "" },
 });
 
-module.exports = mongoose.model("FAQ", FAQSchema);
+const FAQ = mongoose.model("FAQ", FAQSchema);
+
+module.exports = FAQ;
