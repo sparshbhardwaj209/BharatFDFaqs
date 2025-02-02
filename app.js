@@ -1,19 +1,25 @@
-const connectDB = require('./db');
-const express = require('express');
-const cors = require('cors');
-const faqRoutes = require('./routes/faqRoutes');
-connectDB();
+import connectDB from './db.js';
+import express, { json, urlencoded } from 'express';
+import cors from 'cors';
+import faqRoutes from './routes/faqRoutes.js';
+import adminRouter from './admin/admin.js';
+
+await connectDB();
 
 const app = express();
+
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(json());
+app.use(urlencoded({ extended: true }));
 
 // API Routes
 app.use('/api', faqRoutes);
+
+// admin routes
+app.use('/admin', adminRouter);
 
 // Starting the server
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-module.exports = app;
+export default app;

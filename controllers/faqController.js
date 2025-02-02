@@ -1,6 +1,5 @@
-// controllers/faqController.js
-const FAQ = require('../models/Faq');
-const { translateText } = require('../utils/translate');
+import FAQ from '../models/Faq.js';
+import translateText  from '../utils/translate.js';
 
 const getFAQs = async (req, res) => {
   const lang = req.query.lang || 'en';
@@ -29,7 +28,6 @@ const getFAQs = async (req, res) => {
             console.log("translated answer hindi : ", translatedAnswer);
           }
             await faq.save();
-            // console.log(`FAQ ${faq._id} saved with translations.`)
           
           return {
             question: translatedQuestion,
@@ -52,7 +50,7 @@ const getFAQs = async (req, res) => {
         
           return {
             question: translatedQuestion,
-            answer: faq.answer,
+            answer: translatedAnswer,
           };
         } else {
           return {
@@ -70,4 +68,4 @@ const getFAQs = async (req, res) => {
 };
 
 
-module.exports = { getFAQs };
+export default { getFAQs };

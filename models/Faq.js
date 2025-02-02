@@ -1,7 +1,7 @@
 // models/FAQ.js
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const FAQSchema = new mongoose.Schema({
+const FAQSchema = new Schema({
   question: { type: String, required: true },
   answer: { type: String, required: true },
   question_hi: { type: String, default: "" },
@@ -10,6 +10,6 @@ const FAQSchema = new mongoose.Schema({
   answer_bn: { type: String, default: "" },
 });
 
-const FAQ = mongoose.model("FAQ", FAQSchema);
+const FAQ = model("FAQ", FAQSchema);
 
-module.exports = FAQ;
+export default FAQ;

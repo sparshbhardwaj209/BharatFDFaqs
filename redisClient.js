@@ -1,8 +1,8 @@
-const redis = require('redis');
+import { createClient } from 'redis';
 
 // Setting up Redis client
-const redisClient = redis.createClient({ url: 'redis://127.0.0.1:6379' });
+const redisClient = createClient({ url: 'redis://127.0.0.1:6379' });
 redisClient.connect().catch(console.error);
 
 
-module.exports = redisClient;
+export default redisClient;
