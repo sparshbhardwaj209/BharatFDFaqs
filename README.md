@@ -4,22 +4,23 @@ This is a backend API for managing FAQs with multi-language support and a WYSIWY
 
 ## Table of Contents
 
+- [Quick Videio](#quick-video)
 - [Project Overview](#project-overview)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
   - [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
-  - [API Endpoints](#api-endpoints)
-  - [Admin Panel](#admin-panel)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
+- [Database](#database)
+
+## Quick Video
+
+https://github.com/user-attachments/assets/32596fff-611b-4477-be82-241c6e40db41
 
 ## Project Overview
 
 This Node.js project develops a REST API for managing Frequently Asked Questions, which supports multilingual capabilities. It allows storing FAQs with their translations in more than one language and uses WYSIWYG editors for formatting the answers into rich text. The API will support language selection through a query parameter, while translations are cached using Redis to ensure efficient retrieval. The project will include automated translations (using a translation service like Google Translate or a similar library), fallback to English if a translation isn't available, and comprehensive unit tests. The codebase will follow best practices and include a detailed README with installation instructions and API usage examples. Version control will be managed with Git, following conventional commit message formatting.
+
 ## Tech Stack
 
 - **Node.js**: JavaScript runtime for building scalable backend applications.
@@ -90,6 +91,9 @@ To get this project up and running, you need the following tools installed:
       "question": "What are you doing?",
       "answer": "<p>I am playing with Node JS</p>"
     }
+   ```
+
+   ![Image](https://github.com/user-attachments/assets/83d517c6-1e0b-411c-bf13-479d63b3a87c)
 
 7. Now you are all set to Hit the API
    ```bash
@@ -111,20 +115,26 @@ To get this project up and running, you need the following tools installed:
    ```
 
    *This will give you the list of all the stored documents*
+
+   ![Image](https://github.com/user-attachments/assets/3c62af60-0ee0-4db6-886b-de5bae9544b4)
     
-9. To translate the returned documents/faqs into Hindi:
+10. To translate the returned documents/faqs into Hindi:
     ```bash
     http://localhost:8000/api/faqs?lang=hi
     ```
 
    *This will give you the list of all the stored documents in Hindi*
+  
+  ![Image](https://github.com/user-attachments/assets/bcb699ba-7a91-4160-986b-41cf004c0792)
 
-10. To translate the returned documents/faqs into Bangla:
+11. To translate the returned documents/faqs into Bangla:
     ```bash
     http://localhost:8000/api/faqs?lang=bn
     ```
 
    *This will give you the list of all the stored documents in Bangla*
+
+  ![Image](https://github.com/user-attachments/assets/10f5e176-831e-440a-a39b-fbbd9ae27485)
 
 11. You can explore the Admin Section using:
      ```bash
@@ -135,3 +145,9 @@ To get this project up and running, you need the following tools installed:
      ```bash
     npm test
     ```
+
+## Database 
+  
+  - How it will look like in the end:
+
+![Image](https://github.com/user-attachments/assets/8617e136-288c-475d-8afa-7b4918431085)
