@@ -1,5 +1,5 @@
 import FAQ from '../models/Faq.js';
-import translateText  from '../utils/translate.js';
+import { translateText } from '../utils/translate.js';
 
 const getFAQs = async (req, res) => {
   const lang = req.query.lang || 'en';

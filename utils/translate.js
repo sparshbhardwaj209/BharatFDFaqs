@@ -4,11 +4,11 @@ import redisClient from "../redisClient.js";
 
 const CACHE_EXPIRATION = 3600;
 
-async function translateText(text, targetLang, faqId) {
+export async function translateText(text, targetLang, faqId) {
   const cacheKey = `faq:${faqId}:lang:${targetLang}`;
 
   // Try to get from Redis
-  let cached = await get(cacheKey);
+  let cached = await redisClient.get(cacheKey);
   if (cached) {
     console.log(`Cache lookup: ${cacheKey} ->`, cached);
     return cached;
@@ -31,4 +31,4 @@ async function translateText(text, targetLang, faqId) {
   }
 }
 
-export default { translateText };
+// export default { translateText };
