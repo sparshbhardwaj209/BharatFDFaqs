@@ -4,7 +4,6 @@ import * as AdminJSMongoose from '@adminjs/mongoose';
 
 import FAQ from '../models/Faq.js';
 
-// registerAdapter(AdminJSMongoose);
 AdminJS.registerAdapter(AdminJSMongoose);
 
 const adminJs = new AdminJS({
